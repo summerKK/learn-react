@@ -1,4 +1,5 @@
 const path = require("path")
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     //入口文件
@@ -11,7 +12,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, './dist'),
         filename: 'bundle.js',
-        chunkFilename: "[name].js"
+        chunkFilename: "[name].[chunkhash].js"
     },
 
     module: {
@@ -57,5 +58,10 @@ module.exports = {
         }
     },
 
-    devtool: "inline-source-map"
+    devtool: "inline-source-map",
+
+    plugins: [new HtmlWebpackPlugin({
+        filename: "index.html",
+        template: path.join(__dirname, "src/index.html")
+    })]
 }
