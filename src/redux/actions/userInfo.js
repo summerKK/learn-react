@@ -32,10 +32,12 @@ export function getUserInfo() {
             .then(
                 (json) => {
                     dispatch(getUserInfoSuccess(json))
-                })
+                }
+            )
             .catch(
                 () => {
                     dispatch(getUserInfoFail())
-                })
+                }
+            )
     }
 }
