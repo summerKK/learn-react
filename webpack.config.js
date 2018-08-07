@@ -1,6 +1,9 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const webpack = require("webpack")
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
+const CleanWebpackPlugin = require("clean-webpack-plugin")
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
     //入口文件
@@ -16,7 +19,7 @@ module.exports = {
     //输出到dist文件夹，输出文件名字为bundle.js
     output: {
         path: path.join(__dirname, './dist'),
-        filename: "[name].[hash].js",
+        filename: "[name].[chunkhash].js",
         chunkFilename: "[name].[chunkhash].js"
     },
 
@@ -29,7 +32,10 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
             },
             {
                 test: /\.(png|jpg|gif)$/,
@@ -45,14 +51,6 @@ module.exports = {
         ]
     },
 
-    devServer: {
-        port: 8080,
-        contentBase: path.join(__dirname, './dist'),
-        historyApiFallback: true,
-        host: "0.0.0.0",
-        inline: true,
-    },
-
     resolve: {
         alias: {
             pages: path.join(__dirname, "src/pages"),
@@ -63,15 +61,34 @@ module.exports = {
         }
     },
 
-    devtool: "inline-source-map",
+    devtool: "cheap-module-source-map",
 
     plugins: [
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: path.join(__dirname, "src/index.html")
         }),
+        //提取公共代码
         new webpack.optimize.CommonsChunkPlugin({
             name: "vendor"
+        }),
+        //文件压缩
+        new UglifyJSPlugin(),
+        //指定环境
+        new webpack.DefinePlugin({
+            "process.env": {
+                "NODE_ENV": JSON.stringify("production")
+            }
+        }),
+        //优化缓存
+        new webpack.HashedModuleIdsPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'runtime'
+        }),
+        new CleanWebpackPlugin(["dist"]),
+        new ExtractTextPlugin({
+            filename: "[name].[contenthash:5].css",
+            allChunks: true,
         })
     ]
 }
