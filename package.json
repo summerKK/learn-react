@@ -1,0 +1,16 @@
+{
+  "name": "learn-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:summerKK/learn-react.git",
+  "author": "Summer <su943515688@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "umi": "^2.2.8",
+    "umi-plugin-react": "^1.2.3"
+  },
+  "scripts": {
+    "start": "umi dev",
+    "build": "umi build"
+  }
+}
