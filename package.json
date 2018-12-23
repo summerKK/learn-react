@@ -6,7 +6,10 @@
   "author": "Summer <su943515688@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "ant-design-pro": "^2.1.1",
+    "babel-plugin-import": "^1.11.0",
     "umi": "^2.2.8",
+    "umi-plugin-locale": "^2.2.2",
     "umi-plugin-react": "^1.2.3"
   },
   "scripts": {
