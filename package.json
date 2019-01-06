@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "presite": "node ./scripts/generateMock.js && cd functions && npm install",
-    "start": "cross-env APP_TYPE=site umi dev",
+    "start": "cross-env APP_TYPE=site umi dev --port=8011",
     "start:no-mock": "cross-env MOCK=none umi dev",
     "build": "umi build",
     "site": "npm run presite && cross-env APP_TYPE=site npm run build && firebase deploy && npm run docker:push",
@@ -104,7 +104,7 @@
       "node ./scripts/lint-prettier.js",
       "git add"
     ],
-    "**/*.{js,jsx}": "npm run lint-staged:js",
+    "**/*.{js,jsx}": "yarn run lint-staged:js",
     "**/*.less": "stylelint --syntax less"
   },
   "engines": {
@@ -117,7 +117,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-staged"
+      "pre-commit": "yarn run lint-staged"
     }
   }
 }

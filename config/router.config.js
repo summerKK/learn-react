@@ -4,10 +4,10 @@ export default [
     path: '/user',
     component: '../layouts/UserLayout',
     routes: [
-      { path: '/user', redirect: '/user/login' },
-      { path: '/user/login', component: './User/Login' },
-      { path: '/user/register', component: './User/Register' },
-      { path: '/user/register-result', component: './User/RegisterResult' },
+      {path: '/user', redirect: '/user/login'},
+      {path: '/user/login', component: './User/Login'},
+      {path: '/user/register', component: './User/Register'},
+      {path: '/user/register-result', component: './User/RegisterResult'},
     ],
   },
   // app
@@ -18,7 +18,7 @@ export default [
     authority: ['admin', 'user'],
     routes: [
       // dashboard
-      { path: '/', redirect: '/dashboard/analysis' },
+      {path: '/', redirect: '/dashboard/analysis'},
       {
         path: '/dashboard',
         name: 'dashboard',
@@ -166,7 +166,7 @@ export default [
             name: 'success',
             component: './Result/Success',
           },
-          { path: '/result/fail', name: 'fail', component: './Result/Error' },
+          {path: '/result/fail', name: 'fail', component: './Result/Error'},
         ],
       },
       {
@@ -227,7 +227,7 @@ export default [
             ],
           },
           {
-            path: '/account/settings',
+            path: '/account1/settings',
             name: 'settings',
             component: './Account/Settings/Info',
             routes: [
@@ -250,6 +250,32 @@ export default [
               {
                 path: '/account/settings/notification',
                 component: './Account/Settings/NotificationView',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: '/laravel-admin',
+        name: 'Laravel-admin',
+        icon: 'heart',
+        routes: [
+          {
+            path: '/laravel-admin/dashboard',
+            name: 'Dashboard',
+            icon: 'dashboard',
+            component: './LaravelAdmin/Dashboard/Dashboard',
+          },
+          {
+            path: '/laravel-admin/admin',
+            name: 'Admin',
+            icon: 'hdd',
+            routes: [
+              {
+                path: '/laravel-admin/admin/users',
+                name:'Users',
+                icon:'user',
+                component: './LaravelAdmin/Admin/Users',
               },
             ],
           },
