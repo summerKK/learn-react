@@ -1,7 +1,35 @@
 import React, {Component} from 'react'
-import {Button, Col, Divider, Row, Table, Tag} from 'antd'
+import {Button, Col, Divider, Form, Input, Modal, Row, Table, Tag} from 'antd'
 import {connect} from "dva"
 import stlyes from './User.less'
+
+const FormItem = Form.Item
+
+const CreateForm = Form.create()(props => {
+  const {modalVisible, form, handleAdd, handleModalVisible} = props
+  const okHandle = () => {
+    form.validateFields((err, fieldsValue) => {
+      if (err) return
+      form.resetFields()
+      handleAdd(fieldsValue)
+    })
+  }
+  return (
+    <Modal
+      destroyOnClose
+      title="新建规则"
+      visible={modalVisible}
+      onOk={okHandle}
+      onCancel={() => handleModalVisible()}
+    >
+      <FormItem labelCol={{span: 5}} wrapperCol={{span: 15}} label="描述">
+        {form.getFieldDecorator('desc', {
+          rules: [{required: true, message: '请输入至少五个字符的规则描述!', min: 5}],
+        })(<Input placeholder="请输入"/>)}
+      </FormItem>
+    </Modal>
+  )
+})
 
 // laravelUsers 要对应model里面的 namespace
 @connect(({laravelUsers, loading}) => ({
@@ -9,6 +37,10 @@ import stlyes from './User.less'
   loading: loading.models.laravelUsers
 }))
 class Users extends Component {
+
+  state = {
+    modalVisible: false,
+  }
 
   columns = [
     {
@@ -58,7 +90,13 @@ class Users extends Component {
     const {dispatch} = this.props
     dispatch({
       type: 'laravelUsers/queryList',
-      payload:{},
+      payload: {},
+    })
+  }
+
+  handleModalVisible = flag => {
+    this.setState({
+      modalVisible: !!flag,
     })
   }
 
@@ -67,6 +105,13 @@ class Users extends Component {
       laravelUsers: {data},
       loading,
     } = this.props
+    const {modalVisible} = this.state
+
+    const parentMethods = {
+      handleAdd: () => (alert('SUCCESS')),
+      handleModalVisible: this.handleModalVisible
+    }
+
     return (
       <React.Fragment>
         <div className={stlyes.tableList}>
@@ -74,6 +119,7 @@ class Users extends Component {
             新建
           </Button>
         </div>
+        <CreateForm modalVisible={modalVisible} {...parentMethods} />
         <Row>
           <Col>
             <Table dataSource={data.list} columns={this.columns}/>
