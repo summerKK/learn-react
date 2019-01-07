@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
-import {Col, Divider, Row, Table, Tag} from 'antd';
-import {connect} from "dva";
+import React, {Component} from 'react'
+import {Button, Col, Divider, Row, Table, Tag} from 'antd'
+import {connect} from "dva"
+import stlyes from './User.less'
 
-// laravelUsers 要对应model里面的namespace
+// laravelUsers 要对应model里面的 namespace
 @connect(({laravelUsers, loading}) => ({
   laravelUsers,
   loading: loading.models.laravelUsers
 }))
-export default class Users extends Component {
+class Users extends Component {
 
   columns = [
     {
@@ -68,6 +69,11 @@ export default class Users extends Component {
     } = this.props
     return (
       <React.Fragment>
+        <div className={stlyes.tableList}>
+          <Button icon="plus" type="primary" onClick={() => this.handleModalVisible(true)}>
+            新建
+          </Button>
+        </div>
         <Row>
           <Col>
             <Table dataSource={data.list} columns={this.columns}/>
@@ -77,3 +83,5 @@ export default class Users extends Component {
     );
   }
 }
+
+export default Users

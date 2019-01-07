@@ -117,7 +117,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run lint-staged"
+
     }
   }
 }
