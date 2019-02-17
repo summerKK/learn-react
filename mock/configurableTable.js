@@ -21,7 +21,13 @@ const dataSource = [
 ]
 
 for (let i = 0; i < 100; i++) {
-  list.push(dataSource[i % dataSource.length])
+  let data = {
+    id: i,
+    ...dataSource[i % dataSource.length],
+    age: i + 1,
+    description: `My name is John Brown, I am ${i} years old, living in New York No. ${i} Lake Park.`,
+  }
+  list.push(data)
 }
 
 function getList(req, res, u) {
