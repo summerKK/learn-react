@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Button, Col, Divider, Form, Input, Modal, Row, Table, Tag} from 'antd'
 import {connect} from "dva"
 import stlyes from './User.less'
+import StandardTable from "@/pages/LaravelAdmin/Components/StandardTable"
 
 const FormItem = Form.Item
 
@@ -40,6 +41,7 @@ class Users extends Component {
 
   state = {
     modalVisible: false,
+    selectedRows: [],
   }
 
   columns = [
@@ -100,12 +102,22 @@ class Users extends Component {
     })
   }
 
+  handleSelectRows = rows => {
+    this.setState({
+      selectedRows: rows,
+    })
+  }
+
+  handleStandardTableChange = (pagination, filtersArg, sorter) => {
+    return 'Ok'
+  }
+
   render() {
     const {
       laravelUsers: {data},
       loading,
     } = this.props
-    const {modalVisible} = this.state
+    const {modalVisible, selectedRows} = this.state
 
     const parentMethods = {
       handleAdd: () => (alert('SUCCESS')),
@@ -123,6 +135,16 @@ class Users extends Component {
         <Row>
           <Col>
             <Table dataSource={data.list} columns={this.columns}/>
+          </Col>
+          <Col>
+            <StandardTable
+              selectedRows={selectedRows}
+              loading={loading}
+              data={data}
+              columns={this.columns}
+              onSelectRow={this.handleSelectRows}
+              onChange={this.handleStandardTableChange}
+            />
           </Col>
         </Row>
       </React.Fragment>
