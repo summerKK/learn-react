@@ -209,7 +209,7 @@ class ConfigurableTable extends Component {
           </Form>
         </div>
         <StandardTable
-          {...this.state}
+          {...state}
           data={state.hasData ? data : []}
           columns={conlumns}
           selectedRows={state.selectedRows}

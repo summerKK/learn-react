@@ -67,6 +67,11 @@ class StandardTable extends PureComponent {
     const {data = {}, rowKey, ...reset} = this.props
     const {list = [], pagination} = data
 
+    // TODO
+    if (reset.rowSelection && reset.rowSelection.length === 0) {
+      delete reset.rowSelection
+    }
+
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
