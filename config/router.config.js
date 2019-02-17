@@ -273,9 +273,15 @@ export default [
             routes: [
               {
                 path: '/laravel-admin/admin/users',
-                name:'Users',
-                icon:'user',
+                name: 'Users',
+                icon: 'user',
                 component: './LaravelAdmin/Admin/Users',
+              },
+              {
+                path: '/laravel-admin/admin/configurable-table',
+                name: '动态配置表单',
+                icon: 'table',
+                component: './LaravelAdmin/Admin/ConfigurableTable',
               },
             ],
           },
