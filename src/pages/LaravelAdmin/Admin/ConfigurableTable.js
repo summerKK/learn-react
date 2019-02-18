@@ -214,6 +214,7 @@ class ConfigurableTable extends Component {
           columns={conlumns}
           selectedRows={state.selectedRows}
           onSelectRow={this.handleSelectRows}
+          rowKey={record=>record.id}
         />
       </div>
     )

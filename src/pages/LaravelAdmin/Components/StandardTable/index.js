@@ -67,8 +67,8 @@ class StandardTable extends PureComponent {
     const {data = {}, rowKey, ...reset} = this.props
     const {list = [], pagination} = data
 
-    // TODO
-    if (reset.rowSelection && reset.rowSelection.length === 0) {
+    // 避免筛选框失效
+    if (reset.rowSelection && Object.keys(reset.rowSelection).length === 0) {
       delete reset.rowSelection
     }
 
