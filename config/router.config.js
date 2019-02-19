@@ -285,6 +285,19 @@ export default [
               },
             ],
           },
+          {
+            path: '/laravel-admin/example',
+            name: 'Example',
+            icon: 'menu-unfold',
+            routes: [
+              {
+                path: '/laravel-admin/example/grid',
+                name: 'Grid',
+                icon: 'smile',
+                component: './LaravelAdmin/Example/Grid',
+              },
+            ],
+          },
         ],
       },
       {
