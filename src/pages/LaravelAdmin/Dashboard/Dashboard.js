@@ -1,5 +1,5 @@
-import React, {Component} from "react"
-import {Col, List, Row} from "antd"
+import { Col, List, Row } from 'antd';
+import React from 'react';
 
 const data = [
   'Racing car sprays burning fuel into crowd.',
@@ -9,7 +9,8 @@ const data = [
   'Los Angeles battles huge wildfires.',
 ];
 
-export default class Dashboard extends Component {
+export default class Dashboard extends React.Component {
+
   render() {
     return (
       <React.Fragment>

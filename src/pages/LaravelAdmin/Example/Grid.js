@@ -1,6 +1,6 @@
-import {Component} from "react"
-import {Button, Col, DatePicker, Form, Icon, Input, Row} from "antd"
-import styles from "./Grid.less"
+import { Button, Col, DatePicker, Form, Icon, Input, Row } from 'antd';
+import React from 'react';
+import styles from './Grid.less';
 
 const {RangePicker} = DatePicker
 const FormItem = Form.Item
@@ -10,7 +10,7 @@ function hasErrors(fieldsError) {
 }
 
 @Form.create()
-export default class Grid extends Component {
+export default class Grid extends React.Component {
 
   componentDidMount() {
     this.props.form.validateFields()

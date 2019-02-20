@@ -1,6 +1,6 @@
-import {Fragment, PureComponent} from "react"
-import {Alert, Table} from "antd"
-import styles from "./index.less"
+import React, { Fragment, PureComponent } from 'react';
+import { Alert, Table } from 'antd';
+import styles from './index.less';
 
 function initTotalList(columns) {
   const totalList = []
@@ -56,7 +56,7 @@ class StandardTable extends PureComponent {
   }
 
   handleTableChange = (pagination, filters, sorter) => {
-    const {onChange} = this.props
+    const { onChange } = this.props
     if (onChange) {
       onChange(pagination, filters, sorter)
     }
