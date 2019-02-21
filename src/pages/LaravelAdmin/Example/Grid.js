@@ -1,8 +1,9 @@
-import { Button, Col, DatePicker, Form, Icon, Input, Row } from 'antd';
-import React from 'react';
-import styles from './Grid.less';
+import { Button, Col, DatePicker, Form, Icon, Input, Row } from 'antd'
+import React from 'react'
+import styles from './Grid.less'
+import NormalLoginForm from '@/pages/LaravelAdmin/Components/NormalForm/NormalLoginForm'
 
-const {RangePicker} = DatePicker
+const { RangePicker } = DatePicker
 const FormItem = Form.Item
 
 function hasErrors(fieldsError) {
@@ -43,7 +44,7 @@ export default class Grid extends React.Component {
         </Row>
 
         <Row>
-          <Col span={6}>
+          <Col span={16}>
             <Form layout="inline" onSubmit={this.handleSubmit}>
               <FormItem
                 validateStatus={userNameError ? 'error' : 'success'}
@@ -51,9 +52,9 @@ export default class Grid extends React.Component {
               >
                 {
                   getFieldDecorator('userName', {
-                    rules: [{required: true, message: 'Please input you username!'}]
+                    rules: [{ required: true, message: 'Please input you username!' }],
                   })(
-                    <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>} placeholder="username"/>
+                    <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }}/>} placeholder="username"/>,
                   )
                 }
               </FormItem>
@@ -63,9 +64,9 @@ export default class Grid extends React.Component {
               >
                 {
                   getFieldDecorator('password', {
-                    rules: [{required: true, message: 'Please input you password!'}]
+                    rules: [{ required: true, message: 'Please input you password!' }],
                   })(
-                    <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>} placeholder="password"/>
+                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }}/>} placeholder="password"/>,
                   )
                 }
               </FormItem>
@@ -79,6 +80,11 @@ export default class Grid extends React.Component {
                 </Button>
               </FormItem>
             </Form>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={16}>
+            <NormalLoginForm/>
           </Col>
         </Row>
       </div>

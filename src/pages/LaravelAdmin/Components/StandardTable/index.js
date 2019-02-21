@@ -1,6 +1,6 @@
-import React, { Fragment, PureComponent } from 'react';
-import { Alert, Table } from 'antd';
-import styles from './index.less';
+import { Fragment, PureComponent } from 'react'
+import { Alert, Table } from 'antd'
+import styles from './index.less'
 
 function initTotalList(columns) {
   const totalList = []
